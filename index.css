@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap');
+
+body {
+    margin: 0;
+    font-family: Noto Sans, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+
+}
+div#sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    padding-left: 10px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    color: white;
+    background: black;
+    font-family: Montserrat, Noto Sans, sans-serif;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: calc(100% - 32px);
+    position: fixed;
+    user-select: none;
+    -webkit-user-select: none;
+
+
+}
+div#title {
+    line-height: 1;
+}
+div#title>span:nth-of-type(1) {
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 8px;
+    padding-left: 8px;
+}
+div#title>span:nth-of-type(2) {
+    font-size: 24px;
+    font-weight: 900;
+    padding-left: 8px;
+}
+div#sidebar>div#items   { 
+    display: flex;                  
+    flex-direction: column;             
+    justify-content: start;         
+    align-items: left;                 
+    padding-top: 8px;          
+    color: white;           
+    font-family: Montserrat, Noto Sans, sans-serif;
+    font-size: 18px; 
+    padding-left: 8px;
+    position: absolute;
+    top: 75px;
+    
+
+}
+div#items>span:hover {
+    font-weight: 700;
+    transform: skewX(-10deg);
+    cursor: pointer;
+}
+
+div#items>span {
+    transition: all 0.5s cubic-bezier(0.75, 0.15, 0.25, 0.85);
+}
+div#sidebar>hr {
+    border-color: rgba(255, 255, 255, 0.5);
+    width: 80%;
+    position: absolute;
+    top: 60px;
+    margin-left: 8px;
+}
+div#sidebar>div#credits {
+    font-size: 14px;
+    padding-left: 6px;
+}
