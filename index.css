@@ -67,6 +67,7 @@ div#items>span:hover {
 
 div#items>span {
     transition: all 0.5s cubic-bezier(0.75, 0.15, 0.25, 0.85);
+    cursor: pointer;
 }
 div#sidebar>hr {
     border-color: rgba(255, 255, 255, 0.5);
