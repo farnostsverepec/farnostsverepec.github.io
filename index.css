@@ -62,6 +62,7 @@ div#items>span:hover {
     font-weight: 700;
     transform: skewX(-10deg);
     cursor: pointer;
+    letter-spacing: 2px;
 }
 
 div#items>span {
@@ -77,4 +78,42 @@ div#sidebar>hr {
 div#sidebar>div#credits {
     font-size: 14px;
     padding-left: 6px;
+}
+
+div#content {
+    position: absolute;
+    left: 200px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden scroll;
+    padding: 16px;
+}
+
+div#content>div.content {
+    display: flex;
+}
+
+div#content[current="oFarnosti"]>div.content:not(#oFarnosti) {
+    display: none;
+}
+
+div#content[current="svätéOmše"]>div.content:not(#svätéOmše) {
+    display: none;
+}
+
+div#content[current="farskéOznamy"]>div.content:not(#farskéOznamy) {
+    display: none;
+}
+
+div#content[current="aktuality"]>div.content:not(#aktuality) {
+    display: none;
+}
+
+div#content[current="fotogaléria"]>div.content:not(#fotogaléria) {
+    display: none;
+}
+
+div#content[current="kontakty"]>div.content:not(#kontakty) {
+    display: none;
 }
