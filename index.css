@@ -12,7 +12,7 @@ div#sidebar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: left;
+    align-items: flex-start;
     padding-left: 10px;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -26,8 +26,6 @@ div#sidebar {
     position: fixed;
     user-select: none;
     -webkit-user-select: none;
-
-
 }
 div#title {
     line-height: 1;
@@ -43,20 +41,16 @@ div#title>span:nth-of-type(2) {
     font-weight: 900;
     padding-left: 8px;
 }
-div#sidebar>div#items   { 
-    display: flex;                  
-    flex-direction: column;             
-    justify-content: start;         
-    align-items: left;                 
-    padding-top: 8px;          
-    color: white;           
+div#sidebar>div#sidebarTop>div#items   {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    padding-top: 8px;
+    color: white;
     font-family: Montserrat, Noto Sans, sans-serif;
-    font-size: 18px; 
+    font-size: 18px;
     padding-left: 8px;
-    position: absolute;
-    top: 75px;
-    
-
 }
 div#items>span:hover {
     font-weight: 700;
@@ -69,12 +63,11 @@ div#items>span {
     transition: all 0.5s cubic-bezier(0.75, 0.15, 0.25, 0.85);
     cursor: pointer;
 }
-div#sidebar>hr {
+div#sidebar>div#sidebarTop>hr {
     border-color: rgba(255, 255, 255, 0.5);
     width: 80%;
-    position: absolute;
-    top: 60px;
     margin-left: 8px;
+    margin-top: 16px;
 }
 div#sidebar>div#credits {
     font-size: 14px;
