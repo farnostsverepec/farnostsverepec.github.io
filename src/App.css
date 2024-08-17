@@ -1,0 +1,9 @@
+div#content {
+    position: absolute;
+    left: 210px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden scroll;
+    padding: 16px;
+}
