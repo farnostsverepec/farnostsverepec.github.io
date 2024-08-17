@@ -1,0 +1,10 @@
+div.hero {
+    margin: -16px -16px 16px -16px;
+    padding: 64px;
+    background-size: cover;
+    background-position: center top;
+    color: white;
+    text-align: center;
+    font-size: 64px;
+    text-shadow: 0 0 20px black, 0 0 20px black, 0 0 20px black;
+}
