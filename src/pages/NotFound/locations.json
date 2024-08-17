@@ -1,0 +1,19 @@
+{
+    "validLocations": [
+        "oFarnosti",
+        "svateOmse",
+        "farskeOznamy",
+        "aktuality",
+        "fotogaleria",
+        "kontakty",
+        ""
+    ],
+    "aliases": {
+        "/home": "oFarnosti",
+        "/omse": "svateOmse",
+        "/svate": "svateOmse",
+        "/oznamy": "farskeOznamy",
+        "/foto": "fotogaleria",
+        "/kontakt": "kontakty"
+    }
+}
