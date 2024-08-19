@@ -1,0 +1,27 @@
+fieldset.massTableContainer, fieldset.massTableContainer>table {
+    width: -webkit-fill-available;
+    border-radius: 16px 16px 0 0;
+    text-align: center;
+}
+
+fieldset.massTableContainer table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px black solid;
+}
+
+fieldset.massTableContainer th, fieldset.massTableContainer td {
+    text-align: center;
+    padding: 0;
+    border: 1px gray dashed;
+    width: 50%;
+}
+
+fieldset.massTableContainer tr {
+    border: 1px black solid;
+}
+
+fieldset.massTableContainer tr:nth-child(even) {
+    background-color: #e0e0e0;
+    color: black;
+}

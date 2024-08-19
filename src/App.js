@@ -9,12 +9,11 @@ import './App.css'
 export default function App() {
     return (
         <Router>
-            <Sidebar>{['O farnosti', 'Sväté omše', 'Farské oznamy', 'Aktuality', 'Fotogaléria', 'Kontakty']}</Sidebar>
+            <Sidebar>{['O farnosti', 'Farské oznamy', 'Aktuality', 'Fotogaléria', 'Kontakty']}</Sidebar>
             <div id="content">
                 <Routes>
                     <Route path="/" element={<OFarnosti />} />
                     <Route path="oFarnosti" element={<OFarnosti />} />
-                    <Route path="svateOmse" element={<div><h1 style={{marginTop: 0}}>Sväté Omše</h1></div>} />
                     <Route path="farskeOznamy" element={<div><h1 style={{marginTop: 0}}>Farské Oznamy</h1></div>} />
                     <Route path="aktuality" element={<div><h1 style={{marginTop: 0}}>Aktuality</h1></div>} />
                     <Route path="fotogaleria" element={<div><h1 style={{marginTop: 0}}>Fotogaléria</h1></div>} />
