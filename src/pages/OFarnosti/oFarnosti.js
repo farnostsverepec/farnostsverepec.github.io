@@ -1,6 +1,6 @@
 import './oFarnosti.css';
 import Hero from '../../components/hero/hero.js';
-import SvateOmse from '../../components/SvateOmse/svateOmse.js';
+import SvateOmse from '../../components/svateOmse/svateOmse.js';
 import KostolSverepec from '../../images/KostolSverepec.jpg';
 
 

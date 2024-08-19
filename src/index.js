@@ -3,6 +3,11 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
+/**
+ * Converts a string to camel case.
+ *
+ * @return {string} The camel case version of the string.
+ */
 String.prototype.toCamelCase = function() {
     return this.split(/[\s-_]+/)
         .map((word, index) => {
@@ -12,6 +17,11 @@ String.prototype.toCamelCase = function() {
         .join('');
 };
 
+/**
+ * Removes diacritics from a string.
+ *
+ * @return {string} The string without diacritics.
+ */
 String.prototype.removeDiacritics = function() {
     return this.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 };

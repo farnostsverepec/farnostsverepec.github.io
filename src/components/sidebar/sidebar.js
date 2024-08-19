@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './sidebar.css'
 
+/**
+ * A Sidebar component that displays a navigation menu and credits.
+ *
+ * @param {object} props - The component props.
+ * @param {ReactNode} props.children - The elements to be displayed inside the Sidebar component - ideally a list of navigation items.
+ * @return {JSX.Element} The Sidebar component element.
+ */
 export default function Sidebar(props) {
     return (
         <div id="sidebar">
