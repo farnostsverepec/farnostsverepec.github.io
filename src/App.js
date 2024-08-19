@@ -4,7 +4,8 @@ import Sidebar from './components/sidebar/sidebar.js';
 import OFarnosti from './pages/OFarnosti/oFarnosti.js';
 import Kontakty from './pages/Kontakty/kontakty.js';
 import NotFound from './pages/NotFound/NotFound.js';
-import './App.css'
+import './App.css';
+import './fonts/fonts.css'
 
 export default function App() {
     return (
