@@ -1,5 +1,5 @@
-import Hero from '../../components/hero/hero.js';
-import KostolSverepec from '../../images/KostolSverepec.jpg';
+import Hero from '@components/hero/hero.js';
+import KostolSverepec from '@img/KostolSverepec.jpg';
 import './kontakty.css'
 
 export default function Kontakty() {

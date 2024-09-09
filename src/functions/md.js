@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CompiledMarkdown({ text }) {
+export default function CompiledMarkdown({ text, className, id }) {
     const lines = text.split('\n');
     const elements = [];
     let currentOl = [];
@@ -44,5 +44,5 @@ export default function CompiledMarkdown({ text }) {
         }
     });
 
-    return <div>{elements}</div>;
+    return <div className={className} id={id}>{elements}</div>;
 }

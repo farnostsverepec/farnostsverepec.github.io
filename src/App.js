@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/sidebar/sidebar.js';
-import OFarnosti from './pages/OFarnosti/oFarnosti.js';
-import Kontakty from './pages/Kontakty/kontakty.js';
-import NotFound from './pages/NotFound/NotFound.js';
+import Sidebar from '@components/sidebar/sidebar.js';
+import OFarnosti from '@pages/OFarnosti/oFarnosti.js';
+import Kontakty from '@pages/Kontakty/kontakty.js';
+import NotFound from '@pages/NotFound/NotFound.js';
+
 import './App.css';
 import './fonts/fonts.css'
 
