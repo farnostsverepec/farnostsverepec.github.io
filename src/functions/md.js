@@ -6,15 +6,42 @@ export default function CompiledMarkdown({ text, className, id }) {
     let currentOl = [];
     let currentUl = [];
 
+    const processInlineFormatting = (line) => {
+        // Process escaped backslashes first
+        line = line.replace(/\\\\/g, '&#92;');
+
+        // Process non-escaped formatting
+        const patterns = [
+            { regex: /(?<!\\)\*\*(.*?)(?<!\\)\*\*/g, replacement: '<strong>$1</strong>' },
+            { regex: /(?<!\\)\*(.*?)(?<!\\)\*/g, replacement: '<i>$1</i>' },
+            { regex: /(?<!\\)\[(.*?)(?<!\\)\]\((.*?)(?<!\\)\)/g, replacement: '<a href="$2">$1</a>' },
+            { regex: /(?<!\\)\^(.*?)(?<!\\)\^/g, replacement: '<sup>$1</sup>' },
+            { regex: /(?<!\\)_(.*?)(?<!\\)_/g, replacement: '<sub>$1</sub>' },
+            { regex: /(?<!\\)~~(.*?)(?<!\\)~~/g, replacement: '<del>$1</del>' },
+        ];
+
+        patterns.forEach(({ regex, replacement }) => {
+            line = line.replace(regex, replacement);
+        });
+
+        // Remove escape characters, but not for backslashes
+        line = line.replace(/\\([^\\])/g, '$1');
+
+        // Convert remaining escaped backslashes back to single backslashes
+        line = line.replace(/&#92;/g, '\\');
+
+        return line;
+    };
+
     lines.forEach((line, index) => {
         if (line.startsWith('# ')) {
-            elements.push(<h1 key={index}>{line.slice(2)}</h1>);
+            elements.push(<h1 key={index}>{processInlineFormatting(line.slice(2))}</h1>);
         } else if (line.startsWith('## ')) {
-            elements.push(<h2 key={index}>{line.slice(3)}</h2>);
+            elements.push(<h2 key={index}>{processInlineFormatting(line.slice(3))}</h2>);
         } else if (line.startsWith('### ')) {
-            elements.push(<h3 key={index}>{line.slice(4)}</h3>);
+            elements.push(<h3 key={index}>{processInlineFormatting(line.slice(4))}</h3>);
         } else if (/^\d+\. /.test(line)) {
-            const listItem = <li key={index}>{line.replace(/^\d+\. /, '')}</li>;
+            const listItem = <li key={index}>{processInlineFormatting(line.replace(/^\d+\. /, ''))}</li>;
             currentOl.push(listItem);
             if (index === lines.length - 1 || !/^\d+\. /.test(lines[index + 1])) {
                 const start = parseInt(line.match(/^\d+/)[0], 10);
@@ -22,7 +49,7 @@ export default function CompiledMarkdown({ text, className, id }) {
                 currentOl = [];
             }
         } else if (line.startsWith('- ')) {
-            const listItem = <li key={index}>{line.slice(2)}</li>;
+            const listItem = <li key={index}>{processInlineFormatting(line.slice(2))}</li>;
             currentUl.push(listItem);
             if (index === lines.length - 1 || !lines[index + 1].startsWith('- ')) {
                 elements.push(<ul key={`ul-${index}`}>{currentUl}</ul>);
@@ -37,9 +64,7 @@ export default function CompiledMarkdown({ text, className, id }) {
                 elements.push(<ul key={`ul-${index}`}>{currentUl}</ul>);
                 currentUl = [];
             }
-            const formattedLine = line
-                .replace(/\*\*(.*?)\*\*/g, (_, match) => `<strong>${match}</strong>`)
-                .replace(/\*(.*?)\*/g, (_, match) => `<i>${match}</i>`);
+            const formattedLine = processInlineFormatting(line);
             elements.push(<p key={index} dangerouslySetInnerHTML={{ __html: formattedLine }} />);
         }
     });
