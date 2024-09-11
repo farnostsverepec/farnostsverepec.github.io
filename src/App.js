@@ -4,6 +4,10 @@ import Sidebar from '@components/sidebar/sidebar.js';
 import OFarnosti from '@pages/OFarnosti/oFarnosti.js';
 import Kontakty from '@pages/Kontakty/kontakty.js';
 import NotFound from '@pages/NotFound/NotFound.js';
+import Fotogaleria from '@pages/Fotogaleria/fotogaleria.js';
+import FarskeOznamy from  '@pages/FarskeOznamy/farskeOznamy.js';
+import Aktuality from '@pages/Aktuality/aktuality.js';
+
 
 import './App.css';
 import './fonts/fonts.css'
@@ -16,9 +20,9 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<OFarnosti />} />
                     <Route path="oFarnosti" element={<OFarnosti />} />
-                    <Route path="farskeOznamy" element={<div><h1 style={{marginTop: 0}}>Farské Oznamy</h1></div>} />
-                    <Route path="aktuality" element={<div><h1 style={{marginTop: 0}}>Aktuality</h1></div>} />
-                    <Route path="fotogaleria" element={<div><h1 style={{marginTop: 0}}>Fotogaléria</h1></div>} />
+                    <Route path="farskeOznamy" element={<FarskeOznamy />} />
+                    <Route path="aktuality" element={<Aktuality />} />
+                    <Route path="fotogaleria" element={<Fotogaleria />} />
                     <Route path="kontakty" element={<Kontakty />} />
                     <Route path="*" element={<NotFound />}/>
                 </Routes>
