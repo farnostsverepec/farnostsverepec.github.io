@@ -1,10 +1,14 @@
 import React from 'react';
+import "./md.css"
 
 export default function CompiledMarkdown({ text, className, id }) {
+    if (!text) return;
     const lines = text.split('\n');
     const elements = [];
     let currentOl = [];
     let currentUl = [];
+    let currentTable = [];
+    let isInTable = false;
 
     const processInlineFormatting = (line) => {
         // Process escaped backslashes first
@@ -33,8 +37,59 @@ export default function CompiledMarkdown({ text, className, id }) {
         return line;
     };
 
+    const parseTableRow = (row) => {
+        return row.split('|').slice(1, -1).map(cell => cell.trim());
+    };
+
+    const getColumnAlignment = (separator) => {
+        if (separator.startsWith(':') && separator.endsWith(':')) return 'center';
+        if (separator.endsWith(':')) return 'right';
+        return 'left';
+    };
+
     lines.forEach((line, index) => {
-        if (line.startsWith('# ')) {
+        if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
+            if (!isInTable) {
+                isInTable = true;
+                currentTable = [];
+            }
+            currentTable.push(line);
+            if (index === lines.length - 1 || !lines[index + 1].trim().startsWith('|')) {
+                // End of table
+                const [header, separator, ...rows] = currentTable;
+                const headerCells = parseTableRow(header);
+                const separators = parseTableRow(separator);
+                const alignments = separators.map(getColumnAlignment);
+
+                const tableElement = (
+                    <table key={`table-${index}`} className='MDTable'>
+                        <thead>
+                            <tr>
+                                {headerCells.map((cell, i) => (
+                                    <th key={i} style={{ textAlign: alignments[i] }}>
+                                        <span dangerouslySetInnerHTML={{ __html: processInlineFormatting(cell) }} />
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {rows.map((row, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {parseTableRow(row).map((cell, cellIndex) => (
+                                        <td key={cellIndex} style={{ textAlign: alignments[cellIndex] }}>
+                                            <span dangerouslySetInnerHTML={{ __html: processInlineFormatting(cell) }} />
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                );
+                elements.push(tableElement);
+                isInTable = false;
+                currentTable = [];
+            }
+        } else if (line.startsWith('# ')) {
             elements.push(<h1 key={index}>{processInlineFormatting(line.slice(2))}</h1>);
         } else if (line.startsWith('## ')) {
             elements.push(<h2 key={index}>{processInlineFormatting(line.slice(3))}</h2>);

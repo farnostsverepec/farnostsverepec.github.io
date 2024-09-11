@@ -1,0 +1,15 @@
+table.MDTable {
+    border: color-mix(in srgb, white, gray) 1px solid;
+    border-collapse: collapse;
+    & thead, tbody {
+      margin: 0;
+    }
+    & th, td {
+      padding: 10px;
+      border: color-mix(in srgb, white, gray) 1px solid;
+    }
+
+    & th {
+        border-bottom: color-mix(in srgb, white, gray) 2px solid;
+    }
+  }
