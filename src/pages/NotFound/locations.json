@@ -10,7 +10,7 @@
     "aliases": {
         "/home": "/oFarnosti",
         "/oznamy": "/farskeOznamy",
-        "/news": "/news",
+        "/news": "/aktuality",
         "/foto": "/fotogaleria",
         "/kontakt": "/kontakty"
     }
