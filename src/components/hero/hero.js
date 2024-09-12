@@ -9,7 +9,6 @@ import './hero.css';
  * @return {JSX.Element} The Hero component element.
  */
 export default function Hero(props) {
-    console.log(props.background)
     return (
         <div className="hero" style={{ backgroundImage: `url(${props.background})` }}>{props.children}</div>
     )

@@ -1,18 +1,22 @@
 import React from 'react';
 import "./md.css"
 
-export default function CompiledMarkdown({ text, className, id }) {
-    if (!text) return;
+export default function CompiledMarkdown({ text, className, id, extraArgs = [] }) {
+    if (!text) return null;
     const lines = text.split('\n');
     const elements = [];
     let currentOl = [];
     let currentUl = [];
     let currentTable = [];
     let isInTable = false;
+    const extraValues = new Array(extraArgs.length).fill(null);
 
     const processInlineFormatting = (line) => {
         // Process escaped backslashes first
         line = line.replace(/\\\\/g, '&#92;');
+
+        // Convert '\n' to '<br />' before other processing
+        line = line.replace(/(?<!\\)\\n/g, '<br />');
 
         // Process non-escaped formatting
         const patterns = [
@@ -47,7 +51,21 @@ export default function CompiledMarkdown({ text, className, id }) {
         return 'left';
     };
 
+    const processExtraArgs = (line) => {
+        const commentRegex = /<!--\s*(\w+)\s*:\s*"(.+?)"\s*-->/;
+        const match = line.match(commentRegex);
+        if (match) {
+            const [, argName, argValue] = match;
+            const index = extraArgs.indexOf(argName);
+            if (index !== -1) {
+                extraValues[index] = argValue;
+            }
+        }
+    };
+
     lines.forEach((line, index) => {
+        processExtraArgs(line);
+
         if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
             if (!isInTable) {
                 isInTable = true;
@@ -123,6 +141,8 @@ export default function CompiledMarkdown({ text, className, id }) {
             elements.push(<p key={index} dangerouslySetInnerHTML={{ __html: formattedLine }} />);
         }
     });
-
-    return <div className={className} id={id}>{elements}</div>;
+    return (extraArgs.length === 0 || !extraArgs) ? (<div className={className} id={id}>{elements}</div>) : {
+        jsx: <div className={className} id={id}>{elements}</div>,
+        extraValues
+    };
 }

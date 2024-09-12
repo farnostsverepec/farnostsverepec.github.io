@@ -1,0 +1,28 @@
+div.articles-array {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+div.articles-array>div.article-container {
+    padding: 16px;
+    background: snow;
+    border: 2.5px solid black;
+    border-radius: 8px;
+}
+
+@supports (width: -webkit-fill-available) {
+    div.articles-array>div.article-container table.MDTable {
+        width: -webkit-fill-available;
+    }
+}
+
+@supports (width: -moz-available) {
+    div.articles-array>div.article-container table.MDTable {
+        width: -moz-available;
+    }
+}
+
+div.articles-array>div.article-container>div.article-contents p:last-of-type {
+    margin-bottom: 0;
+}

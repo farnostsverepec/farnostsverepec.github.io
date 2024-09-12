@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import './oFarnosti.css';
 import Hero from '@components/hero/hero.js';
-import SvateOmse from '@components/SvateOmse/svateOmse.js';
+import SvateOmse from '@components/svateOmse/svateOmse.js';
 import KostolSverepec from '@img/KostolSverepec.jpg';
-import {default as MD} from "@functions/md.js"
+import {default as MD} from "@functions/md/md.js"
 
 export default function OFarnosti() {
     const [info, setInfo] = useState('');
