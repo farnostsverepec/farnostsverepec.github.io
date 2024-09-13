@@ -4,8 +4,23 @@ div.article-container>h1 {
     margin: 0;
     & span {
         margin: 0 0 0 16px;
-        font-size: 21px;
         text-align: right;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    div.article-container>h1 {
+        & span {
+            font-size: 21px;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    div.article-container>h1 {
+        & span {
+            font-size: 12px;
+        }
     }
 }
 

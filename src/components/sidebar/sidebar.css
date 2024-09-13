@@ -1,67 +1,183 @@
-div#sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-left: 10px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    color: white;
-    background: black;
-    font-family: Montserrat, Noto Sans, sans-serif;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: calc(100% - 32px);
-    position: fixed;
-    user-select: none;
-    -webkit-user-select: none;
-}
-div#title {
-    line-height: 1;
-}
-div#title>span:nth-of-type(1) {
-    font-size: 16px;
-    font-weight: 400;
-    padding-top: 8px;
-    padding-left: 8px;
-}
-div#title>span:nth-of-type(2) {
-    font-size: 24px;
-    font-weight: 900;
-    padding-left: 8px;
-}
-div#sidebar>div#sidebarTop>div#items   {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
-    padding-top: 8px;
-    color: white;
-    font-family: Montserrat, Noto Sans, sans-serif;
-    font-size: 18px;
-    padding-left: 8px;
+@media only screen and (min-width: 768px) {
+    div#sidebar {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 16px;
+        color: white;
+        background: black;
+        font-family: Montserrat, Noto Sans, sans-serif;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: calc(100% - 26px);
+        position: fixed;
+        user-select: none;
+        -webkit-user-select: none;
+        z-index: 1;
+        & div#sidebarTop {
+            width: 100%
+        }
+    }
+    div#title {
+        line-height: 1;
+        display: flex;
+        flex-direction: row;
+    }
+    div#title>span {
+        display: flex;
+        flex-direction: column;
+    }
+    div#title>span>span:nth-of-type(1) {
+        font-size: 16px;
+        font-weight: 400;
+        padding-top: 8px;
+        padding-left: 8px;
+    }
+    div#title>span>span:nth-of-type(2) {
+        font-size: 24px;
+        font-weight: 900;
+        padding-left: 8px;
+    }
+    div#sidebar>div#sidebarTop>div#items   {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+        padding-top: 8px;
+        color: white;
+        font-family: Montserrat, Noto Sans, sans-serif;
+        font-size: 18px;
+        padding-left: 8px;
+    }
+
+    div#items>a {all: unset}
+    div#items>a:hover {
+        font-weight: 700;
+        transform: skewX(-10deg);
+        cursor: pointer;
+        letter-spacing: 2px;
+    }
+
+    div#items>a {
+        transition: all 0.5s cubic-bezier(0.75, 0.15, 0.25, 0.85);
+        cursor: pointer;
+    }
+    div#sidebar>div#sidebarTop>hr {
+        border-color: rgba(255, 255, 255, 0.5);
+        width: 80%;
+        margin-left: 8px;
+        margin-top: 16px;
+    }
+    div#sidebar>div#credits {
+        font-size: 14px;
+        padding-left: 6px;
+    }
+    div#sidebar>div#sidebarTop>div#title>input#sidebarMenuTrigger {
+        appearance: none;
+    }
+    input#sidebarMenuTrigger, label[for="sidebarMenuTrigger"] {
+        display: none;
+    }
 }
 
-div#items>a {all: unset}
-div#items>a:hover {
-    font-weight: 700;
-    transform: skewX(-10deg);
-    cursor: pointer;
-    letter-spacing: 2px;
+@media only screen and (max-width: 767px) {
+    div#sidebar {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 10px 10px 16px 10px;
+        color: white;
+        background: black;
+        font-family: Montserrat, Noto Sans, sans-serif;
+        top: 0;
+        left: 0;
+        width: calc(100% - 20px);
+        height: 50px;
+        position: fixed;
+        user-select: none;
+        -webkit-user-select: none;
+        z-index: 1;
+        overflow: hidden;
+        transition: height 0.33s ease-in-out;
+        & div#sidebarTop {
+            width: 100%
+        }
+    }
+    div#title {
+        line-height: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+    }
+    div#title>span {
+        display: flex;
+        flex-direction: column;
+        margin-top: -2px;
+    }
+    div#title>span>span:nth-of-type(1) {
+        font-size: 16px;
+        font-weight: 400;
+        padding-top: 8px;
+        padding-left: 8px;
+    }
+    div#title>span>span:nth-of-type(2) {
+        font-size: 24px;
+        font-weight: 900;
+        padding-left: 8px;
+    }
+    div#sidebar>div#sidebarTop>div#items   {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        padding-top: 0px;
+        margin-top: -4px;
+        color: white;
+        font-family: Montserrat, Noto Sans, sans-serif;
+        font-size: 18px;
+        padding-left: 8px;
+    }
+
+    div#items>a {all: unset}
+    div#items>a:hover {
+        font-weight: 700;
+        transform: skewX(-10deg);
+        cursor: pointer;
+        letter-spacing: 2px;
+    }
+
+    div#items>a {
+        transition: all 0.5s cubic-bezier(0.75, 0.15, 0.25, 0.85);
+        cursor: pointer;
+    }
+    div#sidebar>div#sidebarTop>hr {
+        border-color: rgba(255, 255, 255, 0.5);
+        width: 80%;
+        margin-left: 8px;
+        margin-top: 16px;
+        visibility: hidden;
+    }
+    div#sidebar>div#credits {
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+    }
+    div#sidebar:has(input#sidebarMenuTrigger:checked) {
+        height: 250px;
+    }
+    label[for="sidebarMenuTrigger"] {
+        padding-right: 14px;
+        margin-top: 6px;
+    }
 }
 
-div#items>a {
-    transition: all 0.5s cubic-bezier(0.75, 0.15, 0.25, 0.85);
-    cursor: pointer;
-}
-div#sidebar>div#sidebarTop>hr {
-    border-color: rgba(255, 255, 255, 0.5);
-    width: 80%;
-    margin-left: 8px;
-    margin-top: 16px;
-}
-div#sidebar>div#credits {
-    font-size: 14px;
-    padding-left: 6px;
+input#sidebarMenuTrigger {
+    appearance: none;
 }

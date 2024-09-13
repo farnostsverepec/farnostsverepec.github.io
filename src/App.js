@@ -8,7 +8,6 @@ import Fotogaleria from '@pages/Fotogaleria/fotogaleria.js';
 import FarskeOznamy from  '@pages/FarskeOznamy/farskeOznamy.js';
 import Aktuality from '@pages/Aktuality/aktuality.js';
 
-
 import './App.css';
 import './fonts/fonts.css'
 

@@ -4,8 +4,25 @@ div.articles-array {
     row-gap: 8px;
 }
 
+@media only screen and (max-width: 767px) {
+    div.articles-array {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    div.articles-array>div.article-container {
+        padding: 12px 16px 16px 16px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    div.articles-array>div.article-container {
+        padding: 16px;
+    }
+}
+
 div.articles-array>div.article-container {
-    padding: 16px;
     background: snow;
     border: 2.5px solid black;
     border-radius: 8px;
@@ -20,6 +37,12 @@ div.articles-array>div.article-container {
 @supports (width: -moz-available) {
     div.articles-array>div.article-container table.MDTable {
         width: -moz-available;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    div.article-contents {
+        font-size: 12px;
     }
 }
 
