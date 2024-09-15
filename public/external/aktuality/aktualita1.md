@@ -1,16 +1,28 @@
-<!-- title: "Informácie o omšiach - 9. - 15. september" -->
-<!-- date: "2024-09-08" -->
+<!-- title: "Nový web Farnosti Sverepec je spustený!" -->
+<!-- date: "2024-09-30" -->
 
-| Deň | Čas svätej omše | Liturgické slávenie |
-| :---: | :---: | :---: |
-| **Pondelok, 9. september** | **-** | **Pondelok 23. týždňa v Cezročnom období** |
-| **Utorok, 10. september** | **18:30**\n+ Ľudovít | **Utorok 23. týždňa v Cezročnom období** |
-| **Streda, 11. september** | **18:30**\n+ Zuzana | **Streda 23. týždňa v Cezročnom období** |
-| **Štvrtok, 12. september** | **18:30**\nZa farnosť | **Najsvätejšieho mena Mária, ľubovoľná spomienka** |
-| **Piatok, 13. september** | **18:30**\n+ Magdaléna | **Sv. Jána Zlatoústeho, biskupa a učiteľa Cirkvi, spomienka** |
-| **Sobota, 14. september** | **7:30**\nInt. ord. | **Povýšenie svätého Kríža, sviatok** |
-| **Nedeľa, 15. september** | **7:00**\n+ Ondrej, Štefánia, Štefan, Berta\n\n**9:00**\n+ Jozef, Anna, Michal | **DVADSIATA ŠTVRTÁ NEDEĽA V CEZROČNOM OBDOBÍ\n\nSEDEMBOLESTNEJ PANNY MÁRIE, PATRÓNKY SLOVENSKA** |
+S radosťou vám oznamujeme, že **Farnosť Sverepec** má nový, moderný web, ktorý je odteraz dostupný pre všetkých veriacich a záujemcov o život našej farnosti.
 
-Na budúcu sobotu sa v Skalnom sanktuáriu Božieho milosrdenstva na hore Butkov uskutoční Púť k ucteniu svätého Kríža. Program začína od 13:00. Slávnostnú svätú omšu o 16:00 bude slúžiť Mons. Peter Beño, nitriansky pomocný biskup. Bližšie informácie a podrobnejší program púte nájdeme na nástenke.
+## Čo na novom webe nájdete?
 
-Budúca nedeľa je zároveň Slávnosťou Sedembolestnej Panny Márie, patrónky nášho národa.
+Na našej novej webstránke nájdete všetky dôležité informácie o dianí v našej farnosti, ako sú:
+
+- **Aktuálne oznamy a podujatia** – sledujte, čo sa u nás chystá a zúčastnite sa rôznych farnostných aktivít.
+- **Rozpis svätých omší** – aby ste nikdy nezmeškali čas konania svätých omší a iných liturgických slávení.
+- **Fotogaléria** – prezrite si krásne momenty zachytené počas rôznych udalostí a podujatí vo farnosti.
+- **Informácie o sviatostiach** – zistite viac o tom, ako sa pripraviť na prijatie sviatostí, vrátane krstu, prvého svätého prijímania či manželstva.
+- **Kontakty a pomoc** – ak máte otázky alebo potrebujete pomoc, nájdete všetky potrebné kontakty na duchovných a pracovníkov farnosti.
+
+## Jednoduché a prehľadné rozhranie
+
+Nový web je navrhnutý s ohľadom na pohodlie používateľov. Je optimalizovaný pre použitie na počítačoch, tabletoch aj mobilných zariadeniach, aby ste mali všetky dôležité informácie vždy po ruke, kdekoľvek sa nachádzate.
+
+## Sledujte nás online!
+
+Sme aj na sociálnych sieťach! Môžete sa pripojiť do našej **[Facebook skupiny](https://www.facebook.com/groups/353212254755683/)**, kde zdieľame aktuálne novinky, fotografie a pozvánky na naše udalosti.
+
+---
+
+Ďakujeme, že ste súčasťou našej farnosti a tešíme sa na vás pri svätých omšiach a ďalších podujatiach.
+
+**[Peter Hošták a Richard Kužela](https://deadcode.is-a.dev), vývojári webu Farnosť Sverepec**

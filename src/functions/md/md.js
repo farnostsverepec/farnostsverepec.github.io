@@ -66,7 +66,9 @@ export default function CompiledMarkdown({ text, className, id, extraArgs = [] }
     lines.forEach((line, index) => {
         processExtraArgs(line);
 
-        if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
+        if (line.trim() === '---') {
+            elements.push(<hr key={`hr-${index}`} />);
+        } else if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
             if (!isInTable) {
                 isInTable = true;
                 currentTable = [];
@@ -114,7 +116,8 @@ export default function CompiledMarkdown({ text, className, id, extraArgs = [] }
         } else if (line.startsWith('### ')) {
             elements.push(<h3 key={index}>{processInlineFormatting(line.slice(4))}</h3>);
         } else if (/^\d+\. /.test(line)) {
-            const listItem = <li key={index}>{processInlineFormatting(line.replace(/^\d+\. /, ''))}</li>;
+            const listItemContent = processInlineFormatting(line.replace(/^\d+\. /, ''));
+            const listItem = <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} />;
             currentOl.push(listItem);
             if (index === lines.length - 1 || !/^\d+\. /.test(lines[index + 1])) {
                 const start = parseInt(line.match(/^\d+/)[0], 10);
@@ -122,7 +125,8 @@ export default function CompiledMarkdown({ text, className, id, extraArgs = [] }
                 currentOl = [];
             }
         } else if (line.startsWith('- ')) {
-            const listItem = <li key={index}>{processInlineFormatting(line.slice(2))}</li>;
+            const listItemContent = processInlineFormatting(line.slice(2));
+            const listItem = <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} />;
             currentUl.push(listItem);
             if (index === lines.length - 1 || !lines[index + 1].startsWith('- ')) {
                 elements.push(<ul key={`ul-${index}`}>{currentUl}</ul>);
