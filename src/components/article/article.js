@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import CompiledMarkdown from '@functions/md/md.js';
 import './article.css';
 
-export default function Article({ file, extraArgs = [] }) {
+export default function Article({ root, file, extraArgs = [] }) {
     const [text, setText] = useState('');
     const [compiledContent, setCompiledContent] = useState({ jsx: null, extraValues: [] });
 
     useEffect(() => {
-        fetch(process.env.PUBLIC_URL + `/external/${file}`)
+        fetch(process.env.PUBLIC_URL + `${root}/${file}`)
             .then(res => res.text())
             .then(restext => {
                 setText(restext);

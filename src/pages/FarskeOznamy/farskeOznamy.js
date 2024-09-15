@@ -7,7 +7,7 @@ export default function FarskeOznamy() {
     return (
         <div>
             <Hero background={KostolSverepec}>Farské Oznamy</Hero>
-            <ArticlesArray />
+            <ArticlesArray source="/external/oznamy"/>
         </div>
     )
 }
