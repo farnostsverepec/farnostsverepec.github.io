@@ -7,8 +7,8 @@ export default function ArticlesArray() {
     useEffect(() => {
         fetch(process.env.PUBLIC_URL + `/external/articles.json`)
         .then(response => response.json())
-        .then(json => setArticles(json));
+        .then(json => setArticles(json.reverse()));
     }, []);
 
-    return articles.length ? (<div className='articles-array'>{articles.reverse().map(article => <Article file={article} key={article}/>)}</div>) : <h1>Načítavajú sa dáta...</h1>
+    return articles.length ? (<div className='articles-array'>{articles.map(article => <Article file={article} key={article}/>)}</div>) : <h1>Načítavajú sa dáta...</h1>
 }
