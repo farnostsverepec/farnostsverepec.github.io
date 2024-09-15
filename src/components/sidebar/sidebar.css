@@ -17,7 +17,7 @@
         position: fixed;
         user-select: none;
         -webkit-user-select: none;
-        z-index: 1;
+        z-index: 999;
         & div#sidebarTop {
             width: 100%
         }
@@ -101,7 +101,7 @@
         position: fixed;
         user-select: none;
         -webkit-user-select: none;
-        z-index: 1;
+        z-index: 999;
         overflow: hidden;
         transition: height 0.33s ease-in-out;
         & div#sidebarTop {

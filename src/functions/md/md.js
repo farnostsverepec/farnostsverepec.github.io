@@ -1,7 +1,7 @@
 import React from 'react';
 import "./md.css"
 
-export default function CompiledMarkdown({ text, className, id, extraArgs = [] }) {
+export default function CompiledMarkdown({ text, className, id, extraArgs = [], style }) {
     if (!text) return null;
     const lines = text.split('\n');
     const elements = [];
@@ -145,8 +145,8 @@ export default function CompiledMarkdown({ text, className, id, extraArgs = [] }
             elements.push(<p key={index} dangerouslySetInnerHTML={{ __html: formattedLine }} />);
         }
     });
-    return (extraArgs.length === 0 || !extraArgs) ? (<div className={className} id={id}>{elements}</div>) : {
-        jsx: <div className={className} id={id}>{elements}</div>,
+    return (extraArgs.length === 0 || !extraArgs) ? (<div className={className} id={id} style={style}>{elements}</div>) : {
+        jsx: <div className={className} id={id} style={style}>{elements}</div>,
         extraValues
     };
 }

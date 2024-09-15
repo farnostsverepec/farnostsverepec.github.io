@@ -27,3 +27,12 @@ div.galleryChip>img:hover {
 div.galleryChip>a {
     color: unset;
 }
+
+@media screen and (max-width: 787px) {
+    div.galleryChip {
+        width: -webkit-fill-available;
+        width: -moz-fill-avaiable;
+        text-align: center;
+        align-items: center;
+    }
+}
