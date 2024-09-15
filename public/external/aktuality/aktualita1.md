@@ -10,7 +10,6 @@ Na našej novej webstránke nájdete všetky dôležité informácie o dianí v 
 - **Aktuálne oznamy a podujatia** – sledujte, čo sa u nás chystá a zúčastnite sa rôznych farnostných aktivít.
 - **Rozpis svätých omší** – aby ste nikdy nezmeškali čas konania svätých omší a iných liturgických slávení.
 - **Fotogaléria** – prezrite si krásne momenty zachytené počas rôznych udalostí a podujatí vo farnosti.
-- **Informácie o sviatostiach** – zistite viac o tom, ako sa pripraviť na prijatie sviatostí, vrátane krstu, prvého svätého prijímania či manželstva.
 - **Kontakty a pomoc** – ak máte otázky alebo potrebujete pomoc, nájdete všetky potrebné kontakty na duchovných a pracovníkov farnosti.
 
 ## Jednoduché a prehľadné rozhranie
