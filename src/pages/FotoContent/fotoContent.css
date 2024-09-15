@@ -1,0 +1,29 @@
+@media only screen and (min-width: 788px) {
+    div.hero {
+        & h1 {
+            font-size: 24px;
+            margin: 0px 0px -16px;
+        }
+        & span {
+            font-size: 56px;
+        }
+    }
+    div.carousel-container {
+        height: calc(100vh - 32px) !important;
+    } 
+}
+
+@media only screen and (max-width: 787px) {
+    div.hero {
+        & h1 {
+            font-size: 24px;
+            margin: 0px 0px -16px;
+        }
+        & span {
+            font-size: 32px;
+        }
+    }
+    div.carousel-container {
+        height: calc(100vh - 270px - 50px) !important;
+    }
+}

@@ -1,0 +1,82 @@
+.carousel-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.carousel-wrapper {
+    display: flex;
+    width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.carousel-content-wrapper {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-content {
+    display: flex;
+    transition: all 500ms ease-in-out;
+    -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
+    scrollbar-width: none;  /* hide scrollbar in Firefox */
+    max-height: 100%;
+}
+
+/* hide scrollbar in webkit browser */
+.carousel-content::-webkit-scrollbar, .carousel-content::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-content > * {
+    width: calc(100% / var(--show, 1));
+    flex-shrink: 0;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* ... */
+.left-arrow, .right-arrow {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    background-color: black;
+    border: 3px solid #ddd;
+    cursor: pointer;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: opacity 0.25s ease;
+}
+
+.left-arrow:not(:hover), .right-arrow:not(:hover) {
+    opacity: 0.25;
+}
+
+.left-arrow:hover, .right-arrow:hover {
+    opacity: 1;
+}
+
+.left-arrow {
+    left: 6px;
+}
+
+.right-arrow {
+    right: 6px;
+}
+
+div.carousel-content-package>img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}

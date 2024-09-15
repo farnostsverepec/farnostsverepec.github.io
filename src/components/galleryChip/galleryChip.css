@@ -1,0 +1,29 @@
+div.galleryChip {
+	height: 185px;
+	width: 250px;
+	padding: 16px;
+	background: black;
+	border-radius: 16px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+	font-family: Montserrat, Noto Sans, sans-serif;
+	font-weight: 700;
+	color: white;
+}
+
+div.galleryChip>img {
+    height: 140px;
+    width: 250px;
+    object-fit: fill;
+    filter: blur(2.5px);
+    transition: filter 0.25s ease;
+}
+  
+div.galleryChip>img:hover {
+    filter: blur(0px);
+}
+
+div.galleryChip>a {
+    color: unset;
+}

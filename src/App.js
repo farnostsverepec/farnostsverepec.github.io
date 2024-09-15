@@ -5,6 +5,7 @@ import OFarnosti from '@pages/OFarnosti/oFarnosti.js';
 import Kontakty from '@pages/Kontakty/kontakty.js';
 import NotFound from '@pages/NotFound/NotFound.js';
 import Fotogaleria from '@pages/Fotogaleria/fotogaleria.js';
+import FotoContent from '@pages/FotoContent/fotoContent.js';
 import FarskeOznamy from  '@pages/FarskeOznamy/farskeOznamy.js';
 import Aktuality from '@pages/Aktuality/aktuality.js';
 
@@ -22,6 +23,7 @@ export default function App() {
                     <Route path="farskeOznamy" element={<FarskeOznamy />} />
                     <Route path="aktuality" element={<Aktuality />} />
                     <Route path="fotogaleria" element={<Fotogaleria />} />
+                    <Route path="fotogaleria/:id" element={<FotoContent />} />
                     <Route path="kontakty" element={<Kontakty />} />
                     <Route path="*" element={<NotFound />}/>
                 </Routes>

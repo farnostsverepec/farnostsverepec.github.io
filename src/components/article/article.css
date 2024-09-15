@@ -24,6 +24,6 @@ div.article-container>h1 {
     }
 }
 
-div.article-container>h3 {
+div.article-container>h3, div.article-container>h6 {
     margin: 8px 0;
 }
