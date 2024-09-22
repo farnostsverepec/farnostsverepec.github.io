@@ -30,6 +30,7 @@
     div#title>span {
         display: flex;
         flex-direction: column;
+        padding: 0 !important;
     }
     div#title>span>span:nth-of-type(1) {
         font-size: 16px;
