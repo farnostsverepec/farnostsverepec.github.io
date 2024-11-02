@@ -3,13 +3,13 @@
 
 | Deň | Čas svätej omše | Liturgické slávenie |
 | :---: | :---: | :---: |
-| **Pondelok, 14. októner** | **-** | **Pondelok 28. týždňa v Cezročnom období** |
-| **Utorok, 15. októner** | **18:30**\n Za zdravie a Božiu pomoc | **Sv. Terézie od Ježiša (z Avily), panny a učiteľky Cirkvi, spomienka** |
-| **Streda, 16. októner** | **18:30**\n+ Katarína  | **Streda 28. týždňa v Cezročnom období** |
-| **Štvrtok, 17. októner** | **7:30**\nZa farnosť | **Sv. Ignáca Antiochijského, biskupa a mučeníka, spomienka** |
-| **Piatok, 18. októner** | **18:30**\n+ Margita a Ján  | **Sv. Lukáša, evanjelistu, sviatok** |
-| **Sobota, 19. októner** | **7:30**\nInt. ord. | **Preblahoslavenej Panny Márie v sobotu** |
-| **Nedeľa, 20. októner** | **7:00**\nZa farnosť\n\n**9:00**\n+ Helena a Miroslav Baránek | **DVADSIATA DEVIATA NEDEĽA V CEZROČNOM OBDOBÍ\n (MISIJNÁ NEDEĽA)** |
+| **Pondelok, 14. október** | **-** | **Pondelok 28. týždňa v Cezročnom období** |
+| **Utorok, 15. október** | **18:30**\n Za zdravie a Božiu pomoc | **Sv. Terézie od Ježiša (z Avily), panny a učiteľky Cirkvi, spomienka** |
+| **Streda, 16. október** | **18:30**\n+ Katarína  | **Streda 28. týždňa v Cezročnom období** |
+| **Štvrtok, 17. október** | **7:30**\nZa farnosť | **Sv. Ignáca Antiochijského, biskupa a mučeníka, spomienka** |
+| **Piatok, 18. október** | **18:30**\n+ Margita a Ján  | **Sv. Lukáša, evanjelistu, sviatok** |
+| **Sobota, 19. október** | **7:30**\nInt. ord. | **Preblahoslavenej Panny Márie v sobotu** |
+| **Nedeľa, 20. október** | **7:00**\nZa farnosť\n\n**9:00**\n+ Helena a Miroslav Baránek | **DVADSIATA DEVIATA NEDEĽA V CEZROČNOM OBDOBÍ\n (MISIJNÁ NEDEĽA)** |
 
 Prvonedeľná zbierka z minulej nedele, určená na obnovu vykurovania nášho farského kostola, vyniesla 1016 EUR. Všetkým darcom chcem vyjadriť úprimné poďakovanie, aj tým, ktorí ste svoje milodary prinášali mimo zbierky. Nech Pán odmení vašu štedrosť. 
 
