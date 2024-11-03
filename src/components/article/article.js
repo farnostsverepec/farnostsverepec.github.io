@@ -15,7 +15,7 @@ export default function Article({ root, file, extraArgs = [] }) {
                 const compiled = CompiledMarkdown({ text: text, extraArgs: ["title", "description", "date", "gallery"] });
                 setCompiledContent(compiled);
             });
-    }, [file, extraArgs, root]);
+    }, [file, extraArgs, root, text]);
 
     return compiledContent ? (
         <div className="article-container">

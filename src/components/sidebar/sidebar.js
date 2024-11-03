@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './sidebar.css'
 
@@ -10,14 +10,13 @@ import './sidebar.css'
  * @return {JSX.Element} The Sidebar component element.
  */
 export default function Sidebar(props) {
-
+    const sidebarMenuTrigger = useRef(null);
     useEffect(() => {
         function handleClickOutside(e) {
-            const sidebarMenuTrigger = document.querySelector('input#sidebarMenuTrigger');
             const contentDiv = e.target.localName === 'div' && e.target.id === 'content';
 
-            if (sidebarMenuTrigger?.checked && contentDiv) {
-                sidebarMenuTrigger.checked = false;
+            if (sidebarMenuTrigger.current.checked && contentDiv) {
+                sidebarMenuTrigger.current.checked = false;
             }
         }
     
@@ -28,20 +27,18 @@ export default function Sidebar(props) {
         };
     }, []);
     
-    const sidebarScript = `document.addEventListener("click", (e) => {if (document.querySelector("input#sidebarMenuTrigger").checked == true && (e.target.localName == "div" && e.target.id == "content")) document.querySelector("input#sidebarMenuTrigger").checked = false})`
     return (
         <div id="sidebar">
             <div id="sidebarTop">
-                <div id="title"> <span><span>Farnosť</span> <span>Sverepec</span></span> <input id="sidebarMenuTrigger" type='checkbox'></input><label className='material-symbols' htmlFor='sidebarMenuTrigger'>menu</label></div>
+                <div id="title"> <span><span>Farnosť</span> <span>Sverepec</span></span> <input id="sidebarMenuTrigger" type='checkbox' ref={sidebarMenuTrigger}></input><label className='material-symbols' htmlFor='sidebarMenuTrigger'>menu</label></div>
                 <hr />
                 <div id="items">
                     {props.children.map((item, index) => (
-                        <Link to={`/${String(item).removeDiacritics().toCamelCase()}`} id={`menu-${String(item).toCamelCase()}`} key={index} className="sidebar-item" onClick={() => document.querySelector("div#sidebar input#sidebarMenuTrigger").checked = false}>{item}</Link>
+                        <Link to={`/${String(item).removeDiacritics().toCamelCase()}`} id={`menu-${String(item).toCamelCase()}`} key={index} className="sidebar-item" onClick={() => sidebarMenuTrigger.current.checked = false}>{item}</Link>
                     ))}
                 </div>
             </div>
             <div id="credits">© 2024 Farnosť Sverepec</div>
-            <script>{sidebarScript}</script>
         </div>
     )
 }
