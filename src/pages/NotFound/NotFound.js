@@ -25,8 +25,7 @@ export default function NotFound() {
     return (
         <div id="notFound">
             <h1>404</h1>
-            <h3>Táto stránka nebola nájdená :(</h3>
-            {closest == null ? <span>Prosím, skontrolujte, či v <code>{decodeURIComponent(location.pathname)}</code> nie je preklep.</span> : <><span>Mali ste na mysli <Link to={closest}><code><i>{closest}</i></code></Link>?</span></>}
+            { location.pathname !== '/404' ? <><h3>Táto stránka nebola nájdená :(</h3>{closest == null ? <span>Prosím, skontrolujte, či v <code>{decodeURIComponent(location.pathname)}</code> nie je preklep.</span> : <><span>Mali ste na mysli <Link to={closest}><code><i>{closest}</i></code></Link>?</span></>}</> : <></>}
         </div>
     )
 }

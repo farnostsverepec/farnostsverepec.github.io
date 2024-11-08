@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import Hero from '@components/hero/hero.js';
-import KostolSverepec from '@img/KostolSverepec.jpg';
 import { default as MD } from '@functions/md/md.js'
 import './kontakty.css';
 import contactsTable from './kontakty.md';
@@ -13,7 +12,7 @@ export default function Kontakty() {
     }, []);
     return (
         <div>
-            <Hero background={KostolSverepec}>Kontakty</Hero>
+            <Hero background={process.env.PUBLIC_URL + "KostolSverepec.jpg"}>Kontakty</Hero>
             <MD text={text} style={{display: "flex", justifyContent: "center", flexWrap: "wrap", rowGap: "8px"}} />
         </div>
     )

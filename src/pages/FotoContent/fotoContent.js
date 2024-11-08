@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import Hero from '@components/hero/hero.js';
-import KostolSverepec from '@img/KostolSverepec.jpg';
 import Carousel from '@components/carousel/carousel';
 import './fotoContent.css'
 
@@ -16,7 +15,7 @@ export default function FotoContent() {
     }, [id]);
     return (
         <div>
-            <Hero background={KostolSverepec}><h1>Fotogaléria</h1><span>{id}</span></Hero>
+            <Hero background={process.env.PUBLIC_URL + "KostolSverepec.jpg"}><h1>Fotogaléria</h1><span>{id}</span></Hero>
             <Carousel show={1}>{ photoNames.map((photo) => (<img src={"/external/foto/" + id + "/" + photo} alt="" key={photo}/>))}</Carousel>
         </div>
     )
