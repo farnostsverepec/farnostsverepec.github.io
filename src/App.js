@@ -25,6 +25,7 @@ export default function App() {
                     <Route path="fotogaleria" element={<Fotogaleria />} />
                     <Route path="fotogaleria/:id" element={<FotoContent />} />
                     <Route path="kontakty" element={<Kontakty />} />
+                    <Route path="404" element={<NotFound />} />
                     <Route path="*" element={<NotFound />}/>
                 </Routes>
             </div>

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import './oFarnosti.css';
 import Hero from '@components/hero/hero.js';
 import SvateOmse from '@components/svateOmse/svateOmse.js';
-import KostolSverepec from '@img/KostolSverepec.jpg';
 import {default as MD} from "@functions/md/md.js"
 
 export default function OFarnosti() {
@@ -16,7 +15,7 @@ export default function OFarnosti() {
 
     return (
         <>
-            <Hero background={KostolSverepec}>O farnosti</Hero>
+            <Hero background={process.env.PUBLIC_URL + "KostolSverepec.jpg"}>O farnosti</Hero>
             <div id='contentWrapper'>
                 <SvateOmse />
                 <MD text={info} />

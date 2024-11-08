@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import "./fotogaleria.css"
 import Hero from '@components/hero/hero.js';
-import KostolSverepec from '@img/KostolSverepec.jpg';
 import GalleryChip from "@components/galleryChip/galleryChip";
 
 export default function Fotogaleria() {
@@ -29,7 +28,7 @@ export default function Fotogaleria() {
   
     return (
       <div>
-        <Hero background={KostolSverepec}>Fotogaléria</Hero>
+        <Hero background={process.env.PUBLIC_URL + "KostolSverepec.jpg"}>Fotogaléria</Hero>
         {galleryTitles.map((title) => (
           <GalleryChip
             key={title}
