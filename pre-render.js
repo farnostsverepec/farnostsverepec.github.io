@@ -43,7 +43,7 @@ async function prerender() {
 
     for (const route of routes) {
         const fileName = route.path === '/' ? 'index.html' : `${route.path.slice(1)}/index.html`;
-        const filePath = path.join(__dirname, 'build', fileName);
+        const filePath = path.join(__dirname, 'build', route.path === '/404' ? '404.html' : fileName);
 
         // Create directory if it doesn't exist
         const dir = path.dirname(filePath);
