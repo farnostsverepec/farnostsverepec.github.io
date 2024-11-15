@@ -11,7 +11,11 @@ export default function FotoContent() {
     useEffect(() => {
         fetch(`/content/external/foto/${id}/photos.json`)
             .then(response => response.json())
-            .then(json => setPhotoNames(json));
+            .then(json => setPhotoNames(json))
+            .catch(error => {
+                console.error('Failed to fetch photos:', error);
+                setPhotoNames([]);
+            });
     }, [id]);
     return (
         <div>

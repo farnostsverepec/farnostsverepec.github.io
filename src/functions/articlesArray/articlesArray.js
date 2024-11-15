@@ -7,7 +7,11 @@ export default function ArticlesArray({source}) {
     useEffect(() => {
         fetch(`${source}/articles.json`)
         .then(response => response.json())
-        .then(json => setArticles(json.reverse()));
+        .then(json => setArticles(json.reverse()))
+        .catch(error => {
+          console.error('Error fetching articles:', error);
+          setArticles([]);  // Set empty array to trigger "No data" state
+        });
     }, [source]);
 
     return articles.length ? (<div className='articles-array'>{articles.map(article => <Article root={source} file={article} key={article}/>)}</div>) : <h1>Načítavajú sa dáta...</h1>

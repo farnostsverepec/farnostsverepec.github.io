@@ -10,7 +10,11 @@ export default function Fotogaleria() {
     useEffect(() => {
       fetch(`/content/external/foto/list.json`)
         .then(response => response.json())
-        .then(json => setGalleryTitles(json));
+        .then(json => setGalleryTitles(json))
+        .catch(error => {
+          console.error('Failed to fetch gallery list:', error);
+          setGalleryTitles([]);
+        });
     }, []);
   
     useEffect(() => {
