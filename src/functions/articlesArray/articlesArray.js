@@ -5,7 +5,7 @@ import Article from '@components/article/article';
 export default function ArticlesArray({source}) {
     const [articles, setArticles] = useState([]);
     useEffect(() => {
-        fetch(process.env.PUBLIC_URL + source + "/articles.json")
+        fetch(`${source}/articles.json`)
         .then(response => response.json())
         .then(json => setArticles(json.reverse()));
     }, [source]);

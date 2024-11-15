@@ -8,7 +8,7 @@ export default function Article({ root, file, extraArgs = [] }) {
     const [compiledContent, setCompiledContent] = useState({ jsx: null, extraValues: [] });
 
     useEffect(() => {
-        fetch(process.env.PUBLIC_URL + `${root}/${file}`)
+        fetch(`${root}/${file}`)
             .then(res => res.text())
             .then(restext => {
                 setText(restext);

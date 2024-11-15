@@ -8,7 +8,7 @@ export default function Fotogaleria() {
     const [previewImages, setPreviewImages] = useState({});
   
     useEffect(() => {
-      fetch(process.env.PUBLIC_URL + `/external/foto/list.json`)
+      fetch(`/content/external/foto/list.json`)
         .then(response => response.json())
         .then(json => setGalleryTitles(json));
     }, []);
@@ -17,9 +17,9 @@ export default function Fotogaleria() {
       const fetchPreviewImages = async () => {
         const previewImages = {};
         for (const title of galleryTitles) {
-          const response = await fetch(process.env.PUBLIC_URL + `/external/foto/${title}/photos.json`);
+          const response = await fetch(`/content/external/foto/${title}/photos.json`);
           const photos = await response.json();
-          previewImages[title] = `${process.env.PUBLIC_URL}/external/foto/${title}/${photos[0]}`;
+          previewImages[title] = `/content/external/foto/${title}/${photos[0]}`;
         }
         setPreviewImages(previewImages);
       };

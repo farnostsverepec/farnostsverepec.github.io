@@ -9,7 +9,7 @@ var times = {};
  * @return {Promise<Object>} A promise that resolves to an object containing the parsed timetable.
  */
 async function parseTimeable() {
-    var timetable = await fetch(process.env.PUBLIC_URL + "/svateOmse.csv").then(res => res.text())
+    var timetable = await fetch("/content/svateOmse.csv").then(res => res.text())
     timetable.split("\n").forEach(line => {
         if (line.startsWith("//")) return;
         times[line.split(",")[0].trim()] = Array.from(line.split(",").slice(1)).map(el => el.trim())
