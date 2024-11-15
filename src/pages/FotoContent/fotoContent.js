@@ -9,14 +9,18 @@ export default function FotoContent() {
     const [photoNames, setPhotoNames] = useState([]);
 
     useEffect(() => {
-        fetch(process.env.PUBLIC_URL + `/external/foto/${id}/photos.json`)
+        fetch(`/content/external/foto/${id}/photos.json`)
             .then(response => response.json())
-            .then(json => setPhotoNames(json));
+            .then(json => setPhotoNames(json))
+            .catch(error => {
+                console.error('Failed to fetch photos:', error);
+                setPhotoNames([]);
+            });
     }, [id]);
     return (
         <div>
-            <Hero background={process.env.PUBLIC_URL + "KostolSverepec.jpg"}><h1>Fotogaléria</h1><span>{id}</span></Hero>
-            <Carousel show={1}>{ photoNames.map((photo) => (<img src={"/external/foto/" + id + "/" + photo} alt="" key={photo}/>))}</Carousel>
+            <Hero background={"/KostolSverepec.jpg"}><h1>Fotogaléria</h1><span>{id}</span></Hero>
+            <Carousel show={1}>{ photoNames.map((photo) => (<img src={"/content/external/foto/" + id + "/" + photo} alt="" key={photo}/>))}</Carousel>
         </div>
     )
 }

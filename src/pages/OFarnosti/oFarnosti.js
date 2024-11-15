@@ -15,7 +15,7 @@ export default function OFarnosti() {
 
     return (
         <>
-            <Hero background={process.env.PUBLIC_URL + "KostolSverepec.jpg"}>O farnosti</Hero>
+            <Hero background={"/KostolSverepec.jpg"}>O farnosti</Hero>
             <div id='contentWrapper'>
                 <SvateOmse />
                 <MD text={info} />

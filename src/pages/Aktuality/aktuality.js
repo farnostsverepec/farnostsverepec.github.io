@@ -5,8 +5,8 @@ import ArticlesArray from "@functions/articlesArray/articlesArray";
 export default function Aktuality() {
     return (
         <div>
-            <Hero background={process.env.PUBLIC_URL + "KostolSverepec.jpg"}>Aktuality</Hero>
-            <ArticlesArray source="/external/aktuality"/>
+            <Hero background={"/KostolSverepec.jpg"}>Aktuality</Hero>
+            <ArticlesArray source="/content/external/aktuality"/>
         </div>
     )
 }

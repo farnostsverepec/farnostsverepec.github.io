@@ -12,7 +12,7 @@ export default function Kontakty() {
     }, []);
     return (
         <div>
-            <Hero background={process.env.PUBLIC_URL + "KostolSverepec.jpg"}>Kontakty</Hero>
+            <Hero background={"/KostolSverepec.jpg"}>Kontakty</Hero>
             <MD text={text} style={{display: "flex", justifyContent: "center", flexWrap: "wrap", rowGap: "8px"}} />
         </div>
     )
