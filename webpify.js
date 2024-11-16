@@ -7,7 +7,7 @@ const fs = require('fs').promises;
 const originalFiles = [];
 const convertedFiles = [];
 
-const DOMAIN = 'farnostsverepec.github.io';
+const DOMAIN = 'www.farnostsverepec.sk';
 
 function normalizePath(filePath) {
     return filePath.split(path.sep).join(path.posix.sep);

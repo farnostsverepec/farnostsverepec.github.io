@@ -4,36 +4,36 @@ const path = require('path');
 
 const DESCRIPTION = "Farský kostol Najsvätejšej Trojice v obci Sverepec je jej hlavnou dominantou. Jeho základný kameň požehnal papež Ján Pavol II. 20. 4. 1990, počas svojej návštevy v Bratislave. Kostol bol postavený z iniciatívy dekana Pavla Trnku, ktorý takto naplnil túžbu obyvateľov obce mať svoj vlastný kostol. Vďaka patrí aj všetkým ostatným rodákom, živým a dnes už aj mŕtvym, ktorí pomáhali pri jeho výstavbe prácou a finančne. Kostol Najsvätejšej Trojice vysvätil dňa 26. mája 2002 Ján Chryzostom kardinál Korec, nitriansky biskup.",
       TITLE = "Farnosť Sverepec",
-      IMAGE = "https://farnostsverepec.github.io/KostolSverepec.jpg";
+      IMAGE = "https://www.farnostsverepec.sk/KostolSverepec.jpg";
 
 const routes = [
     {
         path: '/',
-        canonical: 'https://farnostsverepec.github.io/'
+        canonical: 'https://www.farnostsverepec.sk/'
     },
     {
         path: '/oFarnosti',
-        canonical: 'https://farnostsverepec.github.io/oFarnosti'
+        canonical: 'https://www.farnostsverepec.sk/oFarnosti'
     },
     {
         path: '/404',
-        canonical: 'https://farnostsverepec.github.io/404'
+        canonical: 'https://www.farnostsverepec.sk/404'
     },
     {
         path: '/farskeOznamy',
-        canonical: 'https://farnostsverepec.github.io/farskeOznamy'
+        canonical: 'https://www.farnostsverepec.sk/farskeOznamy'
     },
     {
         path: '/aktuality',
-        canonical: 'https://farnostsverepec.github.io/aktuality'
+        canonical: 'https://www.farnostsverepec.sk/aktuality'
     },
     {
         path: '/fotogaleria',
-        canonical: 'https://farnostsverepec.github.io/fotogaleria'
+        canonical: 'https://www.farnostsverepec.sk/fotogaleria'
     },
     {
         path: '/kontakty',
-        canonical: 'https://farnostsverepec.github.io/kontakty'
+        canonical: 'https://www.farnostsverepec.sk/kontakty'
     }
 ];
 
