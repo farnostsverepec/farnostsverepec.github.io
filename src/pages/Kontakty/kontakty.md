@@ -1,17 +1,11 @@
 |**Farský Úrad - Mgr. Ľubomír Matúška - Správca Farnosti**|
 |:---:|
-|rkfu.sverepec@gmail.com|
+|farar@farnostsverepec.sk|
 |0947 955 033|
-|SK22 0900 0000 0050 3084 2818|
-|IČO: 422 76 276|
-|DIČ: 2023 558 251|
+|SK22 0900 0000 0050 3084 2818\nIČO: 422 76 276\nDIČ: 2023 558 251|
 
-|**Peter - Správca Webu**|
-|:---:|
-|hosty@mail.deadcode.is-a.dev|
-|0904 424 764|
-
-|**Richard - Správca Webu**|
-|:---:|
-|kanshen@mail.deadcode.is-a.dev|
-|0904 439 502|
+|**Peter - Správca Webu**|**Richard - Správca Webu**|
+|:---:|:---:|
+|peterhostak@farnostsverepec.sk|richardkanskje@farnostsverepec.sk|
+|admin@farnostsverepec.sk|-///-|
+|0904 424 764|0904 439 502|

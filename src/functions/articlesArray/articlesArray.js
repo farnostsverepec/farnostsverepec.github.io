@@ -14,5 +14,5 @@ export default function ArticlesArray({source}) {
         });
     }, [source]);
 
-    return articles.length ? (<div className='articles-array'>{articles.map(article => <Article root={source} file={article} key={article}/>)}</div>) : <h1>Načítavajú sa dáta...</h1>
+    return articles.length ? (<div className='articles-array'>{articles.map(article => <Article root={source} file={article} key={article} extraArgs={["title", "description", "date", "gallery"]}/>)}</div>) : <h1>Načítavajú sa dáta...</h1>
 }

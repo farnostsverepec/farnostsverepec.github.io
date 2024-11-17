@@ -1,0 +1,14 @@
+div#kontaktyMD {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    & div.table-wrapper {
+        & div.table-split {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            row-gap: 8px;
+        }
+    }
+}

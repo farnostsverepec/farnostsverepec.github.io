@@ -13,7 +13,7 @@ export default function Kontakty() {
     return (
         <div>
             <Hero background={"/KostolSverepec.jpg"}>Kontakty</Hero>
-            <MD text={text} style={{display: "flex", justifyContent: "center", flexWrap: "wrap", rowGap: "8px"}} />
+            <MD text={text} id="kontaktyMD" />
         </div>
     )
 }
