@@ -22,7 +22,7 @@ export function getExtraArgs(text, extraArgs) {
     return extraValues;
 }
 
-export default function CompiledMarkdown({ text, className, id, style }) {
+export default function CompiledMarkdown({ text, className, id, style, fileName }) {
     const isNarrowScreen = useMediaQuery({ query: '(max-width: 588px)' });
 
     if (!text) return null;
@@ -33,6 +33,7 @@ export default function CompiledMarkdown({ text, className, id, style }) {
     let currentUl = [];
     let currentTable = [];
     let isInTable = false;
+    let tableConfig = null;
 
     const processInlineFormatting = (line) => {
         // Process escaped backslashes first
@@ -104,6 +105,16 @@ export default function CompiledMarkdown({ text, className, id, style }) {
     lines.forEach((line, index) => {
         if (line.trim() === '---') {
             elements.push(<hr key={`hr-${index}`} />);
+        } else if (line.startsWith('<!-- table-setup ')) {
+            const configParts = line.replace('<!-- table-setup ', '').replace(' -->', '').split(';');
+            tableConfig = {};
+            configParts.forEach((part) => {
+                const [key, value] = part.trim().split('=');
+                if (key === 'wrapHideHeader') { tableConfig = { ...tableConfig, wrapHideHeader: value === 'true' }; } else {
+                    tableConfig[key] = value.split(",").length === 1 ? value : value.split(",");
+                }
+            });
+            console.log(fileName)
         } else if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
             if (!isInTable) {
                 isInTable = true;
@@ -117,39 +128,58 @@ export default function CompiledMarkdown({ text, className, id, style }) {
                 const separators = parseTableRow(separator);
                 const alignments = separators.map(getColumnAlignment);
 
-                const tableElement = isNarrowScreen ? renderSplitTable(headerCells, separators, rows) : 
-                        <table key={`table-${index}`} className="MDTable">
-                            <thead>
-                                <tr>
-                                    {headerCells.map((cell, i) => (
-                                        <th key={i} style={{ textAlign: alignments[i] }}>
-                                            <span dangerouslySetInnerHTML={{ __html: processInlineFormatting(cell) }} />
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {rows.map((row, rowIndex) => {
-                                    const cells = parseTableRow(row);
-                                    const renderedCells = [];
-
-                                    for (let i = 0; i < cells.length; i++) {
-                                        if (cells[i] === '-///-') {
-                                            // Skip rendering this cell as it spans with the previous one
-                                            continue;
-                                        }
-                                        const colspan = (i + 1 < cells.length && cells[i + 1] === '-///-') ? 2 : 1;
-                                        renderedCells.push(
-                                            <td key={i} colSpan={colspan} style={{ textAlign: alignments[i] }}>
-                                                <span dangerouslySetInnerHTML={{ __html: processInlineFormatting(cells[i]) }} />
-                                            </td>
-                                        );
+                const tableElement = (isNarrowScreen && /\/static\/media\/kontakty\.(.*)\.md/.test(fileName)) ? renderSplitTable(headerCells, separators, rows) :
+                    <table key={`table-${index}`} id={fileName.replace(/\//g, '-').replace(' ', '_').replace(/\.md$/, "").replace(/^[-_](.*)|(.*)[-_]$/, `$1`) + "-l" + index} className={`MDTable ${tableConfig?.wrapStyle ? ("table-wrap-" + tableConfig.wrapStyle) : ''}`}>
+                        <style>
+                            {`@media (${tableConfig?.wrapOn ? Array.isArray(tableConfig.wrapOn) ? tableConfig.wrapOn.join(') and (') : tableConfig.wrapOn : ''}) {
+                                table#${fileName.replace(/\//g, '-').replace(' ', '_').replace(/\.md$/, "").replace(/^[-_](.*)|(.*)[-_]$/, `$1`) + "-l" + index} {
+                                    & thead.table-wrap-hide-header {
+                                        display:none
                                     }
 
-                                    return <tr key={rowIndex}>{renderedCells}</tr>;
-                                })}
-                            </tbody>
-                        </table>
+                                    & tbody {
+                                    display: flex;
+                                    flex-direction: column;
+                                    row-gap: 16px;
+                                        tr {
+                                            display: flex;
+                                            flex-direction: column;
+                                        }
+                                    }
+                                }   
+                            }`}
+                        </style>
+                        <thead className={tableConfig?.wrapHideHeader ? 'table-wrap-hide-header' : ''}>
+                            <tr>
+                                {headerCells.map((cell, i) => (
+                                    <th key={i} style={{ textAlign: alignments[i] }}>
+                                        <span dangerouslySetInnerHTML={{ __html: processInlineFormatting(cell) }} />
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {rows.map((row, rowIndex) => {
+                                const cells = parseTableRow(row);
+                                const renderedCells = [];
+
+                                for (let i = 0; i < cells.length; i++) {
+                                    if (cells[i] === '-///-') {
+                                        // Skip rendering this cell as it spans with the previous one
+                                        continue;
+                                    }
+                                    const colspan = (i + 1 < cells.length && cells[i + 1] === '-///-') ? 2 : 1;
+                                    renderedCells.push(
+                                        <td key={i} colSpan={colspan} style={{ textAlign: alignments[i] }}>
+                                            <span dangerouslySetInnerHTML={{ __html: processInlineFormatting(cells[i]) }} />
+                                        </td>
+                                    );
+                                }
+
+                                return <tr key={rowIndex}>{renderedCells}</tr>;
+                            })}
+                        </tbody>
+                    </table>
                 elements.push(
                     <div key={`table-wrapper-${index}`} className="table-wrapper">
                         {tableElement}
@@ -157,6 +187,7 @@ export default function CompiledMarkdown({ text, className, id, style }) {
                 );
                 isInTable = false;
                 currentTable = [];
+                tableConfig = null;
             }
         } else if (line.startsWith('# ')) {
             elements.push(<h1 key={index}>{processInlineFormatting(line.slice(2))}</h1>);

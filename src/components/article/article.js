@@ -30,7 +30,7 @@ export default function Article({ root, file, extraArgs = [] }) {
             {extraDetails[3] && <h6>Tento článok má pripojenú fotogalériu "<Link to={`/fotogaleria/${extraDetails[3]}`}>{extraDetails[3]}</Link>"</h6>}
             {(extraDetails[0] || extraDetails[1] || extraDetails[3]) && <hr />}
             <div className='article-contents'>
-                <CompiledMarkdown text={text} />
+                <CompiledMarkdown text={text} fileName={`${root}/${file}`} />
             </div>
         </div>
     )

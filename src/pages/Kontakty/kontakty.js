@@ -13,7 +13,7 @@ export default function Kontakty() {
     return (
         <div>
             <Hero background={"/KostolSverepec.jpg"}>Kontakty</Hero>
-            <MD text={text} id="kontaktyMD" />
+            <MD text={text} id="kontaktyMD" fileName={contactsTable} />
         </div>
     )
 }
