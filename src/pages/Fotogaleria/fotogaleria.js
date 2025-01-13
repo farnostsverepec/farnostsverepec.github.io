@@ -55,7 +55,7 @@ export default function Fotogaleria() {
             <h1>Načítavajú sa dáta...</h1>
         ) : (
             <div className="galleryChips">
-            {galleryTitles.map((title) => (
+            {galleryTitles.toReversed().map((title) => (
               <GalleryChip
                 key={title}
                 title={title}
