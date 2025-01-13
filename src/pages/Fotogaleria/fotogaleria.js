@@ -53,14 +53,16 @@ export default function Fotogaleria() {
           <Hero background={"/KostolSverepec.jpg"}>Fotogaléria</Hero>
           {isLoading ? (
             <h1>Načítavajú sa dáta...</h1>
-          ) : (
-            galleryTitles.map((title) => (
+        ) : (
+            <div className="galleryChips">
+            {galleryTitles.map((title) => (
               <GalleryChip
                 key={title}
                 title={title}
-                preview={previewImages[title]}
+                preview={previewImages[title] }
               />
-            ))
+              ))}
+            </div>
           )}
         </div>
       );
