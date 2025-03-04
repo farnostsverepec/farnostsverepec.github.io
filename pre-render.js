@@ -149,7 +149,7 @@ async function prerender() {
     }
 
     // Generate sitemap.xml
-    const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+    /* const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes.map(route => `  <url>
     <loc>${route.canonical}</loc>
@@ -157,7 +157,7 @@ ${routes.map(route => `  <url>
   </url>`).join('\n')}
 </urlset>`;
 
-    await fs.writeFile(path.join(__dirname, 'build', 'sitemap.xml'), sitemapContent);
+    await fs.writeFile(path.join(__dirname, 'build', 'sitemap.xml'), sitemapContent);*/
 
     await browser.close();
 }
