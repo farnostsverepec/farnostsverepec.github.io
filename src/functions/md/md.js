@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import PDFWrapper from './PDFWrapper.js';
 import "./md.css";
 
 export function getExtraArgs(text, extraArgs) {
@@ -35,6 +36,9 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
     let isInTable = false;
     let tableConfig = null;
 
+    // Special marker for PDF rendering
+    const PDF_MARKER_PREFIX = 'ピーディーエフマーカー';
+
     const processInlineFormatting = (line) => {
         // Process escaped backslashes first
         line = line.replace(/\\\\/g, '&#92;');
@@ -42,13 +46,26 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
         // Convert '\n' to '<br />' before other processing
         line = line.replace(/(?<!\\)\\n/g, '<br />');
 
+        // Process image and PDF syntax before other formatting
+        // For PDFs: ![pdf](file.pdf)
+        line = line.replace(
+            /(?<!\\)!\[(pdf)\]\((.*?\.pdf)(?<!\\)\)/g, 
+            `${PDF_MARKER_PREFIX}$2`
+        );
+        
+        // For regular images: ![alt text](image-url)
+        line = line.replace(
+            /(?<!\\)!\[(.*?)(?<!\\)\]\((.*?)(?<!\\)\)/g, 
+            '<img src="$2" alt="$1" />'
+        );
+
         // Process non-escaped formatting
         const patterns = [
             { regex: /(?<!\\)\*\*(.*?)(?<!\\)\*\*/g, replacement: '<strong>$1</strong>' },
             { regex: /(?<!\\)\*(.*?)(?<!\\)\*/g, replacement: '<i>$1</i>' },
             { regex: /(?<!\\)\[(.*?)(?<!\\)\]\((.*?)(?<!\\)\)/g, replacement: '<a href="$2">$1</a>' },
             { regex: /(?<!\\)\^(.*?)(?<!\\)\^/g, replacement: '<sup>$1</sup>' },
-            { regex: /(?<!\\)_(.*?)(?<!\\)_/g, replacement: '<sub>$1</sub>' },
+            { regex: /^(?!ピーディーエフマーカー)(?<!\\)_(.*?)(?<!\\)_/g, replacement: '<sub>$1</sub>' },
             { regex: /(?<!\\)~~(.*?)(?<!\\)~~/g, replacement: '<del>$1</del>' },
         ];
 
@@ -100,6 +117,26 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
             </div>
         ));
         return <div className="table-split">{columns}</div>;
+    };
+
+    // Function to process PDF markers and convert them to React components
+    const processPdfElements = (content) => {
+        // Check if content contains a PDF marker
+        if (typeof content === 'string' && content.includes(PDF_MARKER_PREFIX)) {
+            const pdfPath = content.replace(PDF_MARKER_PREFIX, '');
+            console.log(pdfPath);
+            return <PDFWrapper file={pdfPath} />;
+        }
+        return content;
+    };
+
+    // Helper function to create elements with PDF support
+    const createElementWithPdfSupport = (tag, key, content) => {
+        if (typeof content === 'string' && content.includes(PDF_MARKER_PREFIX)) {
+            const pdfPath = content.replace(PDF_MARKER_PREFIX, '');
+            return React.createElement(tag, { key }, <PDFWrapper file={pdfPath} />);
+        }
+        return React.createElement(tag, { key, dangerouslySetInnerHTML: { __html: content } });
     };
 
     lines.forEach((line, index) => {
@@ -169,9 +206,14 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
                                         continue;
                                     }
                                     const colspan = (i + 1 < cells.length && cells[i + 1] === '-///-') ? 2 : 1;
+                                    const processedCell = processInlineFormatting(cells[i]);
+                                    
                                     renderedCells.push(
                                         <td key={i} colSpan={colspan} style={{ textAlign: alignments[i] }}>
-                                            <span dangerouslySetInnerHTML={{ __html: processInlineFormatting(cells[i]) }} />
+                                            {processedCell.includes(PDF_MARKER_PREFIX) ? 
+                                                processPdfElements(processedCell) : 
+                                                <span dangerouslySetInnerHTML={{ __html: processedCell }} />
+                                            }
                                         </td>
                                     );
                                 }
@@ -190,14 +232,33 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
                 tableConfig = null;
             }
         } else if (line.startsWith('# ')) {
-            elements.push(<h1 key={index}>{processInlineFormatting(line.slice(2))}</h1>);
+            const formattedText = processInlineFormatting(line.slice(2));
+            elements.push(
+                formattedText.includes(PDF_MARKER_PREFIX) ?
+                createElementWithPdfSupport('h1', index, formattedText) :
+                <h1 key={index} dangerouslySetInnerHTML={{ __html: formattedText }} />
+            );
         } else if (line.startsWith('## ')) {
-            elements.push(<h2 key={index}>{processInlineFormatting(line.slice(3))}</h2>);
+            const formattedText = processInlineFormatting(line.slice(3));
+            elements.push(
+                formattedText.includes(PDF_MARKER_PREFIX) ?
+                createElementWithPdfSupport('h2', index, formattedText) :
+                <h2 key={index} dangerouslySetInnerHTML={{ __html: formattedText }} />
+            );
         } else if (line.startsWith('### ')) {
-            elements.push(<h3 key={index}>{processInlineFormatting(line.slice(4))}</h3>);
+            const formattedText = processInlineFormatting(line.slice(4));
+            elements.push(
+                formattedText.includes(PDF_MARKER_PREFIX) ?
+                createElementWithPdfSupport('h3', index, formattedText) :
+                <h3 key={index} dangerouslySetInnerHTML={{ __html: formattedText }} />
+            );
         } else if (/^\d+\. /.test(line)) {
             const listItemContent = processInlineFormatting(line.replace(/^\d+\. /, ''));
-            const listItem = <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} />;
+            
+            const listItem = listItemContent.includes(PDF_MARKER_PREFIX) ? 
+                <li key={index}>{processPdfElements(listItemContent)}</li> :
+                <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} />;
+                
             currentOl.push(listItem);
             if (index === lines.length - 1 || !/^\d+\. /.test(lines[index + 1])) {
                 const start = parseInt(line.match(/^\d+/)[0], 10);
@@ -206,7 +267,11 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
             }
         } else if (line.startsWith('- ')) {
             const listItemContent = processInlineFormatting(line.slice(2));
-            const listItem = <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} />;
+            
+            const listItem = listItemContent.includes(PDF_MARKER_PREFIX) ? 
+                <li key={index}>{processPdfElements(listItemContent)}</li> :
+                <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} />;
+                
             currentUl.push(listItem);
             if (index === lines.length - 1 || !lines[index + 1].startsWith('- ')) {
                 elements.push(<ul key={`ul-${index}`}>{currentUl}</ul>);
@@ -222,7 +287,18 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
                 currentUl = [];
             }
             const formattedLine = processInlineFormatting(line);
-            elements.push(<p key={index} dangerouslySetInnerHTML={{ __html: formattedLine }} />);
+            
+            if (formattedLine.includes(PDF_MARKER_PREFIX)) {
+                elements.push(
+                    <p key={index}>
+                        {processPdfElements(formattedLine)}
+                    </p>
+                );
+            } else {
+                elements.push(
+                    <p key={index} dangerouslySetInnerHTML={{ __html: formattedLine }} />
+                );
+            }
         }
     });
 
