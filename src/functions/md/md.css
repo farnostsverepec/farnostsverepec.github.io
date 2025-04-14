@@ -12,6 +12,9 @@ table.MDTable {
     & th {
         border-bottom: color-mix(in srgb, white, gray) 2px solid;
     }
+    & ol, ul {
+      list-style-position: inside
+    }
   }
 
 .article-contents img {

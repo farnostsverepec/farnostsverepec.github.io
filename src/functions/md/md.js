@@ -34,7 +34,7 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
     let currentUl = [];
     let currentTable = [];
     let isInTable = false;
-    let tableConfig = null;
+    let tableConfig = null, textConfig = null;
 
     // Special marker for PDF rendering
     const PDF_MARKER_PREFIX = 'ピーディーエフマーカー';
@@ -134,9 +134,9 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
     const createElementWithPdfSupport = (tag, key, content) => {
         if (typeof content === 'string' && content.includes(PDF_MARKER_PREFIX)) {
             const pdfPath = content.replace(PDF_MARKER_PREFIX, '');
-            return React.createElement(tag, { key }, <PDFWrapper file={pdfPath} />);
+            return React.createElement(tag, { key, style: {textAlign: textConfig?.textAlign || 'left'} }, <PDFWrapper file={pdfPath} />);
         }
-        return React.createElement(tag, { key, dangerouslySetInnerHTML: { __html: content } });
+        return React.createElement(tag, { key, style: {textAlign: textConfig?.textAlign || 'left'}, dangerouslySetInnerHTML: { __html: content } });
     };
 
     lines.forEach((line, index) => {
@@ -152,6 +152,18 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
                 }
             });
             console.log(fileName)
+        } else if (line.startsWith('<!-- text-setup ')) {
+            const configParts = line.replace('<!-- text-setup ', '').replace(' -->', '').split(';');
+            textConfig = {};
+            configParts.forEach((part) => {
+                const [key, value] = part.trim().split('=');
+                if (key === 'textAlign') {
+                    textConfig = { ...textConfig, textAlign: value };
+                } else {
+                    textConfig[key] = value.split(",").length === 1 ? value : value.split(",");
+                }
+            });
+            console.log(fileName);
         } else if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
             if (!isInTable) {
                 isInTable = true;
@@ -166,7 +178,7 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
                 const alignments = separators.map(getColumnAlignment);
 
                 const tableElement = (isNarrowScreen && /\/static\/media\/kontakty\.(.*)\.md/.test(fileName)) ? renderSplitTable(headerCells, separators, rows) :
-                    <table key={`table-${index}`} id={fileName.replace(/\//g, '-').replace(' ', '_').replace(/\.md$/, "").replace(/^[-_](.*)|(.*)[-_]$/, `$1`) + "-l" + index} className={`MDTable ${tableConfig?.wrapStyle ? ("table-wrap-" + tableConfig.wrapStyle) : ''}`}>
+                    <table key={`table-${index}`} id={fileName.replace(/\//g, '-').replace(' ', '_').replace(/\.md$/, "").replace(/^[-_](.*)|(.*)[-_]$/, `$1`) + "-l" + index} className={`MDTable ${tableConfig?.wrapStyle ? ("table-wrap-" + tableConfig.wrapStyle) : ''}`} style={{textAlign: textConfig?.textAlign || 'left'}}>
                         <style>
                             {`@media (${tableConfig?.wrapOn ? Array.isArray(tableConfig.wrapOn) ? tableConfig.wrapOn.join(') and (') : tableConfig.wrapOn : ''}) {
                                 table#${fileName.replace(/\//g, '-').replace(' ', '_').replace(/\.md$/, "").replace(/^[-_](.*)|(.*)[-_]$/, `$1`) + "-l" + index} {
@@ -236,67 +248,67 @@ export default function CompiledMarkdown({ text, className, id, style, fileName 
             elements.push(
                 formattedText.includes(PDF_MARKER_PREFIX) ?
                 createElementWithPdfSupport('h1', index, formattedText) :
-                <h1 key={index} dangerouslySetInnerHTML={{ __html: formattedText }} />
+                <h1 key={index} dangerouslySetInnerHTML={{ __html: formattedText }} style={{textAlign: textConfig?.textAlign || 'left'}} />
             );
         } else if (line.startsWith('## ')) {
             const formattedText = processInlineFormatting(line.slice(3));
             elements.push(
                 formattedText.includes(PDF_MARKER_PREFIX) ?
                 createElementWithPdfSupport('h2', index, formattedText) :
-                <h2 key={index} dangerouslySetInnerHTML={{ __html: formattedText }} />
+                <h2 key={index} dangerouslySetInnerHTML={{ __html: formattedText }} style={{textAlign: textConfig?.textAlign || 'left'}} />
             );
         } else if (line.startsWith('### ')) {
             const formattedText = processInlineFormatting(line.slice(4));
             elements.push(
                 formattedText.includes(PDF_MARKER_PREFIX) ?
                 createElementWithPdfSupport('h3', index, formattedText) :
-                <h3 key={index} dangerouslySetInnerHTML={{ __html: formattedText }} />
+                <h3 key={index} dangerouslySetInnerHTML={{ __html: formattedText }} style={{textAlign: textConfig?.textAlign || 'left'}} />
             );
         } else if (/^\d+\. /.test(line)) {
             const listItemContent = processInlineFormatting(line.replace(/^\d+\. /, ''));
             
             const listItem = listItemContent.includes(PDF_MARKER_PREFIX) ? 
-                <li key={index}>{processPdfElements(listItemContent)}</li> :
-                <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} />;
+                <li key={index} style={{textAlign: textConfig?.textAlign || 'left'}} >{processPdfElements(listItemContent)}</li> :
+                <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} style={{textAlign: textConfig?.textAlign || 'left'}} />;
                 
             currentOl.push(listItem);
             if (index === lines.length - 1 || !/^\d+\. /.test(lines[index + 1])) {
                 const start = parseInt(line.match(/^\d+/)[0], 10);
-                elements.push(<ol key={`ol-${index}`} start={start}>{currentOl}</ol>);
+                elements.push(<ol key={`ol-${index}`} start={start} style={{textAlign: textConfig?.textAlign || 'left'}} >{currentOl}</ol>);
                 currentOl = [];
             }
         } else if (line.startsWith('- ')) {
             const listItemContent = processInlineFormatting(line.slice(2));
             
             const listItem = listItemContent.includes(PDF_MARKER_PREFIX) ? 
-                <li key={index}>{processPdfElements(listItemContent)}</li> :
-                <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} />;
+                <li key={index} style={{textAlign: textConfig?.textAlign || 'left'}}>{processPdfElements(listItemContent)}</li> :
+                <li key={index} dangerouslySetInnerHTML={{ __html: listItemContent }} style={{textAlign: textConfig?.textAlign || 'left'}} />;
                 
             currentUl.push(listItem);
             if (index === lines.length - 1 || !lines[index + 1].startsWith('- ')) {
-                elements.push(<ul key={`ul-${index}`}>{currentUl}</ul>);
+                elements.push(<ul key={`ul-${index}`} style={{textAlign: textConfig?.textAlign || 'left'}} >{currentUl}</ul>);
                 currentUl = [];
             }
         } else {
             if (currentOl.length > 0) {
-                elements.push(<ol key={`ol-${index}`}>{currentOl}</ol>);
+                elements.push(<ol key={`ol-${index}`} style={{textAlign: textConfig?.textAlign || 'left'}} >{currentOl}</ol>);
                 currentOl = [];
             }
             if (currentUl.length > 0) {
-                elements.push(<ul key={`ul-${index}`}>{currentUl}</ul>);
+                elements.push(<ul key={`ul-${index}`} style={{textAlign: textConfig?.textAlign || 'left'}} >{currentUl}</ul>);
                 currentUl = [];
             }
             const formattedLine = processInlineFormatting(line);
             
             if (formattedLine.includes(PDF_MARKER_PREFIX)) {
                 elements.push(
-                    <p key={index}>
+                    <p key={index} style={{textAlign: textConfig?.textAlign || 'left'}} >
                         {processPdfElements(formattedLine)}
                     </p>
                 );
             } else {
                 elements.push(
-                    <p key={index} dangerouslySetInnerHTML={{ __html: formattedLine }} />
+                    <p key={index} dangerouslySetInnerHTML={{ __html: formattedLine }} style={{textAlign: textConfig?.textAlign || 'left'}} />
                 );
             }
         }
